@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
     const newUser = new User({ username, password, email });
     await newUser.save();
     
-    res.status(201).json({ message: 'Usuario registrado exitosamente' });
+    res.status(201).json({ message: 'Usuario registrado exitosamente', userId: newUser._id , username: newUser.username  });
   } catch (error) {
     console.error('Error al registrar usuario:', error);
     res.status(500).json({ message: 'Error interno del servidor' });
@@ -27,7 +27,7 @@ exports.login = async (req, res) => {
       return res.status(401).json({ message: 'Credenciales inválidas' });
     }
 
-    res.status(200).json({ message: 'Login exitoso' });
+    res.status(200).json({ message: 'Login exitoso', userId: user._id , username: user.username  });
   } catch (error) {
     console.error('Error al autenticar usuario:', error);
     res.status(500).json({ message: 'Error interno del servidor' });

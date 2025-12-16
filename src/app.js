@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/auth.route');
+const postRoutes = require('./routes/post.route');
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(cors()); //Permitir solicitudes desde otros dominios
 app.use(express.json()); // Hago que mi app entienda JSON
 
 // Registra rutas
-//app.use('/post', );
+app.use('/post', postRoutes); // Rutas de posts http://localhost:3000/post
 app.use('/auth', authRoutes); // Rutas de autenticación http://localhost:3000/auth
 
 module.exports = app;
